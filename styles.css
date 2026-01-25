@@ -69,11 +69,28 @@ body.theme-blue .sidebar {
 .sidebar.collapsed {
   width: 60px;
 }
-.sidebar.collapsed .sidebar-header a,
-.sidebar.collapsed .sidebar-menu li a,
-.sidebar.collapsed .sidebar-footer button {
+/* Styles for content within the collapsed sidebar */
+.sidebar.collapsed .sidebar-header a, /* Logo text will be hidden */
+.sidebar.collapsed .sidebar-menu li a { /* Menu item text will be hidden */
   display: none;
 }
+
+/* Ensure the sign-in button is displayed and styled as a compact icon */
+.sidebar.collapsed .sidebar-footer button {
+  display: flex; /* Use flex for centering */
+  align-items: center;
+  justify-content: center;
+  font-size: 0; /* Hide text */
+  padding: 0;
+  width: 35px; /* Fixed width */
+  height: 35px; /* Fixed height */
+  border-radius: 50%; /* Circular button */
+  background-color: var(--primary-color); /* Theme color */
+  box-shadow: 0 0 5px var(--accent-color-glow);
+  text-indent: -9999px; /* Hide text */
+  overflow: hidden; /* Hide overflow text */
+}
+
 .sidebar.collapsed .sidebar-header {
   padding: 15px 5px;
 }
@@ -84,8 +101,32 @@ body.theme-blue .sidebar {
 .sidebar.collapsed .sidebar-menu li .icon {
   margin-right: 0;
 }
+
 .sidebar.collapsed .sidebar-footer {
-  display: none;
+  display: flex; /* Make footer visible */
+  flex-direction: column; /* Stack icon and button */
+  align-items: center;
+  justify-content: center;
+  padding: 10px 5px; /* Adjust padding */
+  border-top: none; /* Remove border if it looks odd */
+  gap: 5px; /* Adjust gap */
+}
+
+/* Ensure the icon (👤) is visible and styled */
+.sidebar.collapsed .sidebar-footer .icon {
+  margin-right: 0;
+  display: block; /* Ensure icon is visible */
+  font-size: 1.3rem; /* Slightly larger icon */
+  color: white; /* Ensure icon color is visible */
+}
+
+/* Adjustments for the theme-blue */
+body.theme-blue .sidebar.collapsed .sidebar-footer button {
+  background-color: var(--cyberpunk-color-2); /* Hot Pink */
+  box-shadow: 0 0 5px var(--cyberpunk-color-2);
+}
+body.theme-blue .sidebar.collapsed .sidebar-footer .icon {
+  color: white;
 }
 
 .sidebar-header {
