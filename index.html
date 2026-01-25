@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svitskyi.com Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-blue responsive-body">
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <a href="https://svitskyi.com">svitskyi.com</a>
+    <button id="sidebar-toggle-btn" class="sidebar-toggle">☰</button> 
+  </div>
+  <ul class="sidebar-menu">
+    <li><span class="icon">⚙️</span><a href="https://n8n.svitskyi.com">n8n</a></li>
+    <li><span class="icon">🚀</span><a href="https://jenkins.svitskyi.com">Jenkins</a></li>
+    <li><span class="icon">💻</span><a href="https://github.com/">GitHub</a></li>
+    <li><span class="icon">⚡</span><a href="#workflows">Workflows</a></li>
+    <li><span class="icon">📝</span><a href="#about-me">About Me</a></li>
+  </ul>
+  <div class="sidebar-footer">
+    <span class="icon">👤</span> <button id="signin-btn" class="sidebar-button">Sign in</button> <!-- Added Sign in button with icon -->
+  </div>
+</div>
+
+<!-- MAIN CHAT AREA -->
+<main id="main-content" class="chat-container centered">
+  <div id="chat-body" class="chat-body empty">
+    <h1><span class="second-part-violet">Everything is unlocked!</span></h1>
+  </div>
+  <div class="input-wrapper">
+    <textarea id="chat-message" placeholder="Ask me" rows="1"></textarea>
+    <button id="send-btn">Send</button>
+  </div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+<!-- This is index.html root page of the website. It is built with docker so whenever changes are required it should be rebuild/restarted using docker compose. Docker extention, not docker-compose binary -->
