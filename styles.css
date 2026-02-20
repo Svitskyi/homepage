@@ -93,6 +93,12 @@ body.theme-blue .sidebar {
 
 .sidebar.collapsed .sidebar-header {
   padding: 15px 5px;
+  display: flex;
+  justify-content: center; /* Explicitly center content */
+  align-items: center;     /* Explicitly center content vertically */
+}
+.sidebar.collapsed .sidebar-header .sidebar-toggle {
+  margin-left: 0; /* Override auto margin to allow centering */
 }
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
@@ -153,7 +159,6 @@ body.theme-blue .sidebar.collapsed .sidebar-footer .icon {
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
-  margin-left: auto; /* Push button to the right */
   padding: 5px;
   display: block; /* Ensure it's displayed */
 }
