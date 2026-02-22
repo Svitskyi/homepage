@@ -23,9 +23,15 @@ function toggleSidebar() {
   
   mainContent.classList.toggle('sidebar-collapsed');
 
-  // Update toggle button class for animated icon (Mobile only)
   if (sidebarToggleBtn && window.innerWidth <= 1024) {
     sidebarToggleBtn.classList.toggle('open');
+  }
+
+  // Collapse all submenus when the sidebar is closed (either collapsed on desktop or inactive on mobile)
+  if (sidebar.classList.contains('collapsed') || (!sidebar.classList.contains('active') && window.innerWidth <= 1024)) {
+    document.querySelectorAll('.has-submenu.open').forEach(item => {
+      item.classList.remove('open');
+    });
   }
 }
 
