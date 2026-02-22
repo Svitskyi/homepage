@@ -68,10 +68,21 @@ body.theme-blue .sidebar {
 .sidebar.collapsed {
   width: 60px;
 }
-/* Styles for content within the collapsed sidebar */
-.sidebar.collapsed .sidebar-header a, /* Logo text will be hidden */
-.sidebar.collapsed .sidebar-menu li a { /* Menu item text will be hidden */
-  display: none;
+/* Styles for content within the collapsed sidebar - Desktop Only */
+@media(min-width: 769px) {
+  .sidebar.collapsed .sidebar-header a, 
+  .sidebar.collapsed .sidebar-menu li .menu-text { 
+    display: none;
+  }
+
+  .sidebar.collapsed .sidebar-menu li a {
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .sidebar.collapsed .sidebar-menu li .icon {
+    margin-right: 0;
+  }
 }
 
 /* Ensure the sign-in button is displayed and styled as a compact icon */
@@ -100,11 +111,7 @@ body.theme-blue .sidebar {
   margin-left: 0; /* Override auto margin to allow centering */
 }
 .sidebar.collapsed .sidebar-menu li {
-  justify-content: center;
-  padding: 12px 10px;
-}
-.sidebar.collapsed .sidebar-menu li .icon {
-  margin-right: 0;
+  /* Redundant styles removed, handled by li a */
 }
 
 .sidebar.collapsed .sidebar-footer {
@@ -168,12 +175,20 @@ body.theme-blue .sidebar.collapsed .sidebar-footer .icon {
   flex-grow: 1; /* Allow menu to take available space */
 }
 .sidebar-menu li {
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   color: #333333; /* Default text color */
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold; /* Made font bold */
+  font-size: 1.2rem; /* Increased font size */
+  width: 100%;
 }
 
 /* Simple Separators */
@@ -196,13 +211,6 @@ body.theme-blue .sidebar-menu li:hover {
   font-size: 1.1rem;
   width: 20px; /* Fixed width for icons */
   text-align: center;
-}
-.sidebar-menu li a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold; /* Made font bold */
-  font-size: 1.2rem; /* Increased font size */
-  flex-grow: 1; /* Allow text to take remaining space */
 }
 
 .sidebar-footer {
@@ -552,6 +560,10 @@ h1 .second-part-violet {
     padding: 0 10px;
     width: auto;
     max-width: 100vw;
+  }
+
+  .sidebar-menu li a {
+    font-size: 1rem; /* Slightly smaller for mobile */
   }
 
   .chat-container.started {
