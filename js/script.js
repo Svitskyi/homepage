@@ -82,6 +82,7 @@ if (loginBtn && loginModal) {
     });
 }
 
+
 if (closeLoginModal && loginModal) {
     closeLoginModal.addEventListener('click', () => {
         loginModal.classList.remove('active');
