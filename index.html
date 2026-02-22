@@ -6,7 +6,7 @@
     <title>svitskyi.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&family=Space+Mono&family=JetBrains+Mono&family=Fira+Code&family=Source+Code+Pro&family=Ubuntu+Mono&family=Inconsolata&family=VT323&family=Silkscreen&family=Syncopate:wght@400;700&family=Michroma&family=Exo+2:wght@400;700&family=Titillium+Web:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-blue responsive-body">
@@ -19,17 +19,18 @@
   <ul class="sidebar-menu">
     <li><span class="icon">⚙️</span><a href="https://n8n.svitskyi.com">n8n</a></li>
     <li><span class="icon">🚀</span><a href="https://jenkins.svitskyi.com">Jenkins</a></li>
-        <li><span class="icon">💻</span><a href="https://github.com/Svitskyi">GitHub</a></li>
-        <li><span class="icon">💼</span><a href="https://www.linkedin.com/in/oleg-svitskyi/">LinkedIn</a></li>
-      </ul>
-
+    <li><span class="icon">💻</span><a href="https://github.com/Svitskyi">GitHub</a></li>
+    <li><span class="icon">💼</span><a href="https://www.linkedin.com/in/oleg-svitskyi/">LinkedIn</a></li>
+    <li><span class="icon">👤</span><a href="#">About me</a></li>
+  </ul>
 </div>
 
 <!-- MAIN CHAT AREA -->
-<main id="main-content" class="chat-container centered">
-  <div id="chat-body" class="chat-body empty">
-    <h1><span class="second-part-violet">Everything is unlocked!</span></h1>
+<main id="main-content" class="chat-container">
+  <div class="welcome-container">
+    <h1><span class="second-part-violet">Welcome to svitskyi.com</span></h1>
   </div>
+  <div id="chat-body" class="chat-body"></div>
   <div class="input-wrapper">
     <textarea id="chat-message" placeholder="Ask me" rows="1"></textarea>
     <button id="send-btn">Send</button>

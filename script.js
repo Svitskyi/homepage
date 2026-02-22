@@ -1,5 +1,12 @@
 const webhookUrl = "https://n8n.svitskyi.com/webhook/38acd88b-1d20-4546-b05b-c140d0eaa795";
 
+// --- Session Management ---
+let sessionId = localStorage.getItem('chatSessionId');
+if (!sessionId) {
+    sessionId = 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    localStorage.setItem('chatSessionId', sessionId);
+}
+
 // --- Sidebar Toggle ---
 const sidebar = document.querySelector('.sidebar');
 const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
@@ -19,33 +26,36 @@ if (sidebarToggleBtn) {
 const body = document.body;
 const themeToggleSidebarBtn = document.getElementById('theme-toggle-sidebar');
 
-themeToggleSidebarBtn.addEventListener('click', () => {
-  // Toggle between theme-orange and theme-blue classes
-  if (body.classList.contains('theme-orange')) {
-    body.classList.remove('theme-orange');
-    body.classList.add('theme-blue');
-  } else {
-    body.classList.remove('theme-blue');
-    body.classList.add('theme-orange');
-  }
-});
+if (themeToggleSidebarBtn) {
+  themeToggleSidebarBtn.addEventListener('click', () => {
+    // Toggle between theme-orange and theme-blue classes
+    if (body.classList.contains('theme-orange')) {
+      body.classList.remove('theme-orange');
+      body.classList.add('theme-blue');
+    } else {
+      body.classList.remove('theme-blue');
+      body.classList.add('theme-orange');
+    }
+  });
+}
 
 // --- Chat Functionality ---
 const container = document.querySelector('.chat-container');
 
 function addMessage(text, sender) {
     const chatBody = document.getElementById("chat-body");
-    if(chatBody.classList.contains("empty")) chatBody.classList.remove("empty");
+    const welcome = document.querySelector('.welcome-container');
 
-    // Switch layout from center to bottom-aligned after first message
-    if(container.classList.contains('centered')){
-        container.classList.remove('centered');
-        container.classList.add('bottom-aligned');
+    // Remove welcome message and shift layout on first message
+    if (welcome) {
+        welcome.remove();
+        container.classList.add('started');
     }
 
     const msg = document.createElement("div");
     msg.className = sender + " message";
     msg.innerText = text;
+    
     chatBody.appendChild(msg);
     chatBody.scrollTop = chatBody.scrollHeight;
 }
@@ -63,23 +73,39 @@ async function sendMessage() {
     const typing = document.createElement("div");
     typing.className = "bot message typing";
     typing.innerText = "Typing...";
+    
     document.getElementById("chat-body").appendChild(typing);
     document.getElementById("chat-body").scrollTop = document.getElementById("chat-body").scrollHeight;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
 
     try {
         const response = await fetch(webhookUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text })
+            signal: controller.signal,
+            body: JSON.stringify({ 
+                message: text,
+                sessionId: sessionId 
+            })
         });
+        clearTimeout(timeoutId);
+
         if(!response.ok) throw new Error("HTTP " + response.status + " " + response.statusText);
         const data = await response.json();
         typing.remove();
         addMessage(data.reply || "No response", "bot");
     } catch (err) {
         typing.remove();
-        console.error("Fetch error:", err);
-        addMessage("Error contacting server: " + err.message, "bot");
+        clearTimeout(timeoutId);
+        
+        if (err.name === 'AbortError') {
+            addMessage("Error: Request timed out after 15 seconds.", "bot");
+        } else {
+            console.error("Fetch error:", err);
+            addMessage("Error contacting server: " + err.message, "bot");
+        }
     }
 }
 
