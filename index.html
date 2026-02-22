@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&family=Space+Mono&family=JetBrains+Mono&family=Fira+Code&family=Source+Code+Pro&family=Ubuntu+Mono&family=Inconsolata&family=VT323&family=Silkscreen&family=Syncopate:wght@400;700&family=Michroma&family=Exo+2:wght@400;700&family=Titillium+Web:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css?v=1.7">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="theme-blue responsive-body">
 
@@ -19,11 +20,28 @@
     <a href="https://svitskyi.com">svitskyi.com</a>
   </div>
   <ul class="sidebar-menu">
-    <li><a href="https://n8n.svitskyi.com"><span class="icon">⚙️</span><span class="menu-text">n8n</span></a></li>
-    <li><a href="https://jenkins.svitskyi.com"><span class="icon">🚀</span><span class="menu-text">Jenkins</span></a></li>
-    <li><a href="https://github.com/Svitskyi"><span class="icon">💻</span><span class="menu-text">GitHub</span></a></li>
-    <li><a href="https://www.linkedin.com/in/oleg-svitskyi/"><span class="icon">💼</span><span class="menu-text">LinkedIn</span></a></li>
-    <li><a href="#" id="about-me-link"><span class="icon">👤</span><span class="menu-text">About me</span></a></li>
+    <li class="has-submenu">
+      <a href="#"><i class="icon fas fa-tools"></i><span class="menu-text">My internal tooling</span><span class="plus-icon">+</span></a>
+      <ul class="submenu">
+        <li><a href="https://n8n.svitskyi.com"><i class="icon fa-brands fa-n8n"></i><span class="menu-text">n8n</span></a></li>
+        <li><a href="https://jenkins.svitskyi.com"><i class="icon fa-brands fa-jenkins"></i><span class="menu-text">Jenkins</span></a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#"><i class="icon fas fa-folder"></i><span class="menu-text">My projects</span><span class="plus-icon">+</span></a>
+      <ul class="submenu">
+        <li><a href="https://github.com/Svitskyi"><i class="icon fa-brands fa-github"></i><span class="menu-text">GitHub</span></a></li>
+        <li><a href="#"><i class="icon fas fa-robot"></i><span class="menu-text">AI assisted QA</span></a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#"><i class="icon fas fa-user"></i><span class="menu-text">About me</span><span class="plus-icon">+</span></a>
+      <ul class="submenu">
+        <li><a href="#" id="about-me-link"><i class="icon fas fa-user-circle"></i><span class="menu-text">Who I am</span></a></li>
+        <li><a href="https://www.linkedin.com/in/oleg-svitskyi/"><i class="icon fa-brands fa-linkedin"></i><span class="menu-text">LinkedIn</span></a></li>
+        <li><a href="static/cv.pdf"><i class="icon fas fa-file-alt"></i><span class="menu-text">My CV</span></a></li>
+      </ul>
+    </li>
   </ul>
   <div class="sidebar-footer">
     <button id="login-btn" class="login-sidebar-btn">Login</button>
@@ -63,7 +81,7 @@
   <div class="modal-content">
     <button id="close-modal" class="close-btn">&times;</button>
     <div class="modal-header">
-      <h2>About Me</h2>
+      <h2>Who I am</h2>
     </div>
     <div class="modal-body">
       <p>I am a highly skilled <strong>IT Professional</strong> with a deep focus on <strong>DevOps, Platform Engineering, and QA Automation</strong>. My expertise lies at the intersection of development and operations, where I specialize in building robust <strong>CI/CD pipelines</strong> and scalable infrastructure.</p>

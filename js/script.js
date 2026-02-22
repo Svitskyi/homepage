@@ -41,6 +41,17 @@ mainContent.addEventListener('click', () => {
   }
 });
 
+// --- Tree-like Menu ---
+const submenus = document.querySelectorAll('.has-submenu > a');
+submenus.forEach(submenu => {
+  submenu.addEventListener('click', (e) => {
+    e.preventDefault();
+    const parentLi = e.target.closest('.has-submenu');
+    parentLi.classList.toggle('open');
+  });
+});
+
+
 // --- Theme Toggle ---
 const body = document.body;
 const themeToggleSidebarBtn = document.getElementById('theme-toggle-sidebar');

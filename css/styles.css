@@ -185,6 +185,33 @@ body {
   text-align: center;
 }
 
+.sidebar-menu .has-submenu > a {
+  position: relative;
+}
+
+.plus-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.has-submenu.open > a .plus-icon {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 30px;
+  display: none;
+  background: rgba(0,0,0,0.2);
+}
+
+.has-submenu.open > .submenu {
+  display: block;
+}
+
 /* --- Desktop Collapsed Styles --- */
 @media(min-width: 1025px) {
   .sidebar.collapsed .sidebar-header a, 
