@@ -417,6 +417,77 @@ body {
   margin-bottom: 20px;
 }
 
+.modal-body {
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.modal-body p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.modal-body strong {
+  color: var(--neon-magenta);
+  font-weight: 700;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.skill-tag {
+  background: rgba(176, 38, 255, 0.1);
+  border: 1px solid var(--primary-color);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.login-modal-content {
+  max-width: 400px;
+}
+
+.login-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.login-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.login-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.login-option .icon {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
 .login-sidebar-btn {
   background: transparent;
   border: 1px solid var(--primary-color);
