@@ -11,10 +11,11 @@
 </head>
 <body class="theme-blue responsive-body">
 
+<div class="bg-grid"></div>
+
 <div class="sidebar">
   <div class="sidebar-header">
     <a href="https://svitskyi.com">svitskyi.com</a>
-    <button id="sidebar-toggle-btn" class="sidebar-toggle">☰</button> 
   </div>
   <ul class="sidebar-menu">
     <li><a href="https://n8n.svitskyi.com"><span class="icon">⚙️</span><span class="menu-text">n8n</span></a></li>
@@ -23,6 +24,37 @@
     <li><a href="https://www.linkedin.com/in/oleg-svitskyi/"><span class="icon">💼</span><span class="menu-text">LinkedIn</span></a></li>
     <li><a href="#" id="about-me-link"><span class="icon">👤</span><span class="menu-text">About me</span></a></li>
   </ul>
+  <div class="sidebar-footer">
+    <button id="login-btn" class="login-sidebar-btn">Login</button>
+    <p>&copy; svitskyi.com 2026</p>
+  </div>
+</div>
+
+<button id="sidebar-toggle-btn" class="sidebar-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button> 
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" class="modal-overlay">
+  <div class="modal-content login-modal-content">
+    <button id="close-login-modal" class="close-btn">&times;</button>
+    <div class="modal-header">
+      <h2>Login</h2>
+    </div>
+    <div class="login-options">
+      <button class="login-option google">
+        <span class="icon">G</span> Login with Google
+      </button>
+      <button class="login-option apple">
+        <span class="icon">🍎</span> Login with Apple
+      </button>
+      <button class="login-option microsoft">
+        <span class="icon">M</span> Login with Microsoft
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- ABOUT ME MODAL -->

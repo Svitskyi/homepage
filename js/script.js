@@ -13,18 +13,19 @@ const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
 const mainContent = document.getElementById('main-content'); // Target the main container
 
 function toggleSidebar() {
-  sidebar.classList.toggle('collapsed');
-  sidebar.classList.toggle('active'); // Added for mobile overlay
+  if (window.innerWidth <= 1024) {
+    sidebar.classList.toggle('active');
+    sidebar.classList.remove('collapsed');
+  } else {
+    sidebar.classList.toggle('collapsed');
+    sidebar.classList.remove('active');
+  }
+  
   mainContent.classList.toggle('sidebar-collapsed');
 
-  // Update toggle icon (Mobile only)
-  if (sidebarToggleBtn) {
-    if (window.innerWidth <= 1024) {
-      const isActive = sidebar.classList.contains('active');
-      sidebarToggleBtn.innerText = isActive ? '<' : '☰';
-    } else {
-      sidebarToggleBtn.innerText = '☰';
-    }
+  // Update toggle button class for animated icon (Mobile only)
+  if (sidebarToggleBtn && window.innerWidth <= 1024) {
+    sidebarToggleBtn.classList.toggle('open');
   }
 }
 
@@ -64,6 +65,35 @@ const container = document.querySelector('.chat-container');
 const aboutMeLink = document.getElementById('about-me-link');
 const aboutModal = document.getElementById('about-modal');
 const closeModal = document.getElementById('close-modal');
+
+// --- Login Modal ---
+const loginBtn = document.getElementById('login-btn');
+const loginModal = document.getElementById('login-modal');
+const closeLoginModal = document.getElementById('close-login-modal');
+
+if (loginBtn && loginModal) {
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.classList.add('active');
+        // Close mobile sidebar if open
+        if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+            toggleSidebar();
+        }
+    });
+}
+
+if (closeLoginModal && loginModal) {
+    closeLoginModal.addEventListener('click', () => {
+        loginModal.classList.remove('active');
+    });
+
+    // Close on click outside
+    loginModal.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.classList.remove('active');
+        }
+    });
+}
 
 if (aboutMeLink && aboutModal) {
     aboutMeLink.addEventListener('click', (e) => {
