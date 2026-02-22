@@ -14,13 +14,21 @@ const mainContent = document.getElementById('main-content'); // Target the main 
 
 function toggleSidebar() {
   sidebar.classList.toggle('collapsed');
-  mainContent.classList.toggle('sidebar-collapsed'); // Add a class to main content for styling
+  sidebar.classList.toggle('active'); // Added for mobile overlay
+  mainContent.classList.toggle('sidebar-collapsed');
 }
 
 // Add event listener to the new toggle button
 if (sidebarToggleBtn) {
   sidebarToggleBtn.addEventListener('click', toggleSidebar);
 }
+
+// Close sidebar when clicking outside on mobile
+mainContent.addEventListener('click', () => {
+  if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+    toggleSidebar();
+  }
+});
 
 // --- Theme Toggle ---
 const body = document.body;
