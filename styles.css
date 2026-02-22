@@ -102,7 +102,7 @@ body.theme-blue .sidebar {
 }
 
 .sidebar.collapsed .sidebar-header {
-  padding: 15px 5px;
+  padding: 20px 5px;
   display: flex;
   justify-content: center; /* Explicitly center content */
   align-items: center;     /* Explicitly center content vertically */
@@ -466,6 +466,136 @@ body.theme-blue .sidebar-button {
   50%  { color: #00FFFF; } /* Cyan */
   75%  { color: #FF1493; } /* Deep Pink */
   100% { color: #4B0082; } /* Indigo */
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: rgba(44, 0, 44, 0.6); /* Dark purple glass */
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--primary-color);
+  padding: 40px 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh; /* Added for mobile scrolling */
+  display: flex; /* Added for mobile scrolling */
+  flex-direction: column; /* Added for mobile scrolling */
+  position: relative;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-color-glow);
+  color: white;
+  animation: modalSlideUp 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 2001; /* Ensure close button is above scrolling content */
+  transition: color 0.2s, transform 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--secondary-color);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.modal-header h2 {
+  margin-bottom: 25px;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--secondary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.modal-body {
+  overflow-y: auto; /* Enable scrolling */
+  flex-grow: 1;
+  padding-right: 5px; /* Space for scrollbar */
+}
+
+.modal-body p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.modal-body strong {
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.skill-tag {
+  background: rgba(148, 0, 211, 0.2);
+  border: 1px solid var(--primary-color);
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  color: white;
+  box-shadow: 0 0 10px rgba(148, 0, 211, 0.3);
+}
+
+/* Desktop sizing for modal */
+@media(min-width: 769px) {
+  .modal-content {
+    width: 60%;
+    height: auto;
+    max-width: 700px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+  }
+  
+  .modal-body {
+    overflow-y: auto;
+    flex-grow: 1;
+  }
 }
 
 h1 .second-part-violet {

@@ -50,6 +50,35 @@ if (themeToggleSidebarBtn) {
 // --- Chat Functionality ---
 const container = document.querySelector('.chat-container');
 
+// --- About Me Modal ---
+const aboutMeLink = document.getElementById('about-me-link');
+const aboutModal = document.getElementById('about-modal');
+const closeModal = document.getElementById('close-modal');
+
+if (aboutMeLink && aboutModal) {
+    aboutMeLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        aboutModal.classList.add('active');
+        // Close mobile sidebar if open
+        if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+            toggleSidebar();
+        }
+    });
+}
+
+if (closeModal && aboutModal) {
+    closeModal.addEventListener('click', () => {
+        aboutModal.classList.remove('active');
+    });
+
+    // Close on click outside
+    aboutModal.addEventListener('click', (e) => {
+        if (e.target === aboutModal) {
+            aboutModal.classList.remove('active');
+        }
+    });
+}
+
 function addMessage(text, sender) {
     const chatBody = document.getElementById("chat-body");
     const welcome = document.querySelector('.welcome-container');
