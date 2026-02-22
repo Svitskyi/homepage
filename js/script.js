@@ -16,6 +16,16 @@ function toggleSidebar() {
   sidebar.classList.toggle('collapsed');
   sidebar.classList.toggle('active'); // Added for mobile overlay
   mainContent.classList.toggle('sidebar-collapsed');
+
+  // Update toggle icon (Mobile only)
+  if (sidebarToggleBtn) {
+    if (window.innerWidth <= 1024) {
+      const isActive = sidebar.classList.contains('active');
+      sidebarToggleBtn.innerText = isActive ? '<' : '☰';
+    } else {
+      sidebarToggleBtn.innerText = '☰';
+    }
+  }
 }
 
 // Add event listener to the new toggle button
@@ -25,7 +35,7 @@ if (sidebarToggleBtn) {
 
 // Close sidebar when clicking outside on mobile
 mainContent.addEventListener('click', () => {
-  if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+  if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
     toggleSidebar();
   }
 });
@@ -60,7 +70,7 @@ if (aboutMeLink && aboutModal) {
         e.preventDefault();
         aboutModal.classList.add('active');
         // Close mobile sidebar if open
-        if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+        if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
             toggleSidebar();
         }
     });

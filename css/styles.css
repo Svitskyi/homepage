@@ -69,10 +69,23 @@ body.theme-blue .sidebar {
   width: 60px;
 }
 /* Styles for content within the collapsed sidebar - Desktop Only */
-@media(min-width: 769px) {
+@media(min-width: 1025px) {
+  .sidebar-header a, 
+  .sidebar-menu li .menu-text { 
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+    opacity: 1;
+    max-width: 500px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
   .sidebar.collapsed .sidebar-header a, 
   .sidebar.collapsed .sidebar-menu li .menu-text { 
-    display: none;
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
   }
 
   .sidebar.collapsed .sidebar-menu li a {
@@ -267,14 +280,11 @@ body.theme-blue .sidebar-button {
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Prevent unwanted scrollbar */
-  margin-left: 250px; /* Default margin when sidebar is expanded */
-  transition: margin-left 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-/* When sidebar is collapsed, adjust main content margin */
-.sidebar.collapsed + #main-content {
-  margin-left: 60px;
-}
+/* When sidebar is collapsed, main content will automatically expand due to flex-grow */
+
 
 /* Chat container */
 .chat-container { 
@@ -581,7 +591,7 @@ body.theme-blue .sidebar-button {
 }
 
 /* Desktop sizing for modal */
-@media(min-width: 769px) {
+@media(min-width: 1025px) {
   .modal-content {
     width: 60%;
     height: auto;
@@ -604,7 +614,7 @@ h1 .second-part-violet {
 }
 
 /* Responsive */
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
   #main-content {
     margin-left: 0 !important;
     width: 100%;
@@ -648,22 +658,50 @@ h1 .second-part-violet {
     left: 0;
   }
 
-  /* Floating toggle button for mobile */
+  /* Floating toggle button for mobile - FIXED POSITION */
   #sidebar-toggle-btn {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 1001;
-    background: rgba(148, 0, 211, 0.6);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
+    z-index: 1100; /* Ensure it stays above the sidebar and overlay */
+    background: rgba(26, 0, 26, 0.9); /* Match theme background */
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 12px; /* Sleeker rounded corners than a full circle */
     width: 45px;
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 5px var(--accent-color-glow);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+  }
+
+  /* Remove the jumping override logic */
+  .sidebar.active #sidebar-toggle-btn {
+    background: rgba(148, 0, 211, 0.2);
+    border-color: var(--cyberpunk-color-2);
+    color: white;
+  }
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 15px 0 100px; /* Increased padding to 100px for a larger gap */
+    height: 75px;
+    position: relative;
+    gap: 0;
+  }
+
+  .sidebar-header a {
+    font-size: 1rem; /* Reduced to 1rem for better fit */
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .sidebar-header .sidebar-toggle {
@@ -683,8 +721,15 @@ h1 .second-part-violet {
     top: 30vh; /* Moved even higher on mobile */
   }
 
+  /* Adjust for landscape (horizontal) orientation where height is small */
+  @media(max-height: 500px) and (orientation: landscape) {
+    .welcome-container {
+      top: 45vh; 
+    }
+  }
+
   .welcome-container h1 {
-    font-size: 6.3vw; /* 10% smaller than 7vw */
+    font-size: 5.2vw; /* Reduced to fit the longer text on one line */
     white-space: nowrap; /* Keep on one line */
     line-height: 1.3;
     padding: 0 10px;
