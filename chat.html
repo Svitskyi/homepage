@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>svitskyi.com</title>
+    <title>Turning tech into advantage.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&family=Space+Mono&family=JetBrains+Mono&family=Fira+Code&family=Source+Code+Pro&family=Ubuntu+Mono&family=Inconsolata&family=VT323&family=Silkscreen&family=Syncopate:wght@400;700&family=Michroma&family=Exo+2:wght@400;700&family=Titillium+Web:wght@400;700&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
@@ -31,13 +31,15 @@
     <li class="has-submenu">
       <a href="#"><i class="icon fas fa-folder"></i><span class="menu-text">My projects</span><span class="plus-icon">+</span></a>
       <ul class="submenu">
-        <li><a href="chat.html"><i class="icon fas fa-robot"></i><span class="menu-text">AI assisted QA</span></a></li>
+        <li><a href="https://github.com/Svitskyi"><i class="icon fa-brands fa-github"></i><span class="menu-text">GitHub</span></a></li>
+        <li><a href="#"><i class="icon fas fa-robot"></i><span class="menu-text">AI assisted QA</span></a></li>
       </ul>
     </li>
     <li class="has-submenu">
       <a href="#"><i class="icon fas fa-user"></i><span class="menu-text">About me</span><span class="plus-icon">+</span></a>
       <ul class="submenu">
         <li><a href="#" id="about-me-link"><i class="icon fas fa-user-circle"></i><span class="menu-text">Who I am</span></a></li>
+        <li><a href="https://www.linkedin.com/in/oleg-svitskyi/"><i class="icon fa-brands fa-linkedin"></i><span class="menu-text">LinkedIn</span></a></li>
         <li><a href="static/cv.pdf"><i class="icon fas fa-file-alt"></i><span class="menu-text">My CV</span></a></li>
       </ul>
     </li>
@@ -117,13 +119,18 @@
   </div>
 </div>
 
-<main id="main-content" class="chat-container main-page">
-  <div class="welcome-container">
-    <h1><span class="second-part-violet">WELCOME TO MY HOMEPAGE</span></h1>
-    <div class="social-links">
-      <a href="https://github.com/Svitskyi" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/oleg-svitskyi/" target="_blank"><i class="fab fa-linkedin"></i></a>
-    </div>
+<!-- MAIN CHAT AREA -->
+<main id="main-content" class="chat-container started">
+  <div class="chat-snippets">
+    <button class="chat-snippet">What is this chat?</button>
+    <button class="chat-snippet">What can this chat do?</button>
+    <button class="chat-snippet">Run a generated example</button>
+  </div>
+
+  <div id="chat-body" class="chat-body"></div>
+  <div class="input-wrapper">
+    <textarea id="chat-message" placeholder="Ask me" rows="1"></textarea>
+    <button id="send-btn">Send</button>
   </div>
 </main>
 
