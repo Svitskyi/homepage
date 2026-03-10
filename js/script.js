@@ -116,6 +116,7 @@ const authPassword = document.getElementById('auth-password');
 const pwdReqs = document.getElementById('password-requirements');
 const authSubmitText = document.getElementById('auth-submit-text');
 const authModalTitle = document.getElementById('auth-modal-title');
+const authPasswordConfirm = document.getElementById('auth-password-confirm');
 let currentAuthMode = 'login';
 
 if (tabLogin && tabRegister) {
@@ -125,6 +126,8 @@ if (tabLogin && tabRegister) {
         tabRegister.classList.remove('active');
         authUsername.style.display = 'none';
         authUsername.required = false;
+        authPasswordConfirm.style.display = 'none';
+        authPasswordConfirm.required = false;
         pwdReqs.style.display = 'none';
         authSubmitText.textContent = 'Login';
         authModalTitle.textContent = 'Login';
@@ -137,6 +140,8 @@ if (tabLogin && tabRegister) {
         tabLogin.classList.remove('active');
         authUsername.style.display = 'block';
         authUsername.required = true;
+        authPasswordConfirm.style.display = 'block';
+        authPasswordConfirm.required = true;
         pwdReqs.style.display = 'block';
         authSubmitText.textContent = 'Register';
         authModalTitle.textContent = 'Register';
@@ -165,6 +170,7 @@ if (authForm) {
         e.preventDefault();
         const email = document.getElementById('auth-email').value.trim();
         const password = authPassword.value;
+        const passwordConfirm = authPasswordConfirm.value;
         const username = authUsername.value.trim();
         
         const cfResponse = document.querySelector('[name="cf-turnstile-response"]');
@@ -176,17 +182,24 @@ if (authForm) {
             return;
         }
 
-        if (currentAuthMode === 'register' && !validatePassword(password)) {
-            loginMessage.textContent = 'Password does not meet requirements';
-            loginMessage.className = 'login-message error';
-            return;
+        if (currentAuthMode === 'register') {
+            if (!validatePassword(password)) {
+                loginMessage.textContent = 'Password does not meet requirements';
+                loginMessage.className = 'login-message error';
+                return;
+            }
+            if (password !== passwordConfirm) {
+                loginMessage.textContent = 'Passwords do not match';
+                loginMessage.className = 'login-message error';
+                return;
+            }
         }
 
         loginMessage.textContent = 'Processing...';
         loginMessage.className = 'login-message';
         
         try {
-            const response = await fetch('http://localhost:5678/webhook/tWtqKDf6CNeMuE9z/webhook/login', {
+            const response = await fetch('https://n8n.svitskyi.com/webhook/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: currentAuthMode, email, password, username, captcha: captchaToken })
