@@ -9,7 +9,8 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the static files from the local directory to the Nginx webroot
 COPY index.html /usr/share/nginx/html/
-COPY chat.html /usr/share/nginx/html/
+COPY robots.txt /usr/share/nginx/html/
+COPY sitemap.xml /usr/share/nginx/html/
 COPY static/ /usr/share/nginx/html/static/
 COPY css/ /usr/share/nginx/html/css/
 COPY js/ /usr/share/nginx/html/js/
