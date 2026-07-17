@@ -1,18 +1,11 @@
 #!/bin/bash
-# This script restarts the homepage Docker project.
+set -e
 
-# Change to the script's directory to ensure docker-compose can find the YAML file
-cd "$(dirname "$0")"
+echo "Restarting homepage..."
 
-echo "Stopping and removing Docker containers..."
-docker compose down
+bash /home/prod/projects/k8s/homepage/build.sh
+kubectl rollout restart deployment/homepage -n homepage
+kubectl rollout status deployment/homepage -n homepage --timeout=60s
 
-docker system prune -f
-
-echo "Rebuilding Docker image without cache..."
-docker compose build --no-cache
-
-echo "Starting Docker containers..."
-docker compose up -d
-
-echo "Restart complete."
+echo ""
+echo "  Homepage: http://localhost:8080"
